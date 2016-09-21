@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/TitleStyle"
+        android:text="设置"/>
+
+    <Button
+        android:id="@+id/bt_loation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bt_in"
+        android:layout_margin="8dp"
+        android:textColor="#080926"
+        android:text="查看历史签到" />
+
+    <Button
+        android:id="@+id/bt_setpwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bt_in"
+        android:layout_margin="8dp"
+        android:textColor="#080926"
+        android:text="修改密码" />
+
+    <Button
+        android:id="@+id/bt_exit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bt_in"
+        android:layout_margin="8dp"
+        android:textColor="#080926"
+        android:text="退出当前账号" />
+</LinearLayout>
