@@ -22,6 +22,7 @@ public class SignInApplication extends Application {
         JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
         JPushInterface.init(this);     		// 初始化 JPush
 
+
         //只有主进程运行的时候才需要初始化
         if (getApplicationInfo().packageName.equals(getMyProcessName())){
             //im初始化

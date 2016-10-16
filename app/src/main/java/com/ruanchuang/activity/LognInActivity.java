@@ -118,6 +118,7 @@ public class LognInActivity extends AppCompatActivity {
                         edit.putString("group", user.getGroup());
                         edit.putString("qq", user.getQq());
                         edit.putString("phone", user.getMobilePhoneNumber());
+                        edit.putString("ques", user.getQues());
                         edit.commit();
 
                         Log.i(tag,"姓名："+user.getName());
@@ -125,6 +126,7 @@ public class LognInActivity extends AppCompatActivity {
                         Log.i(tag,"组别："+user.getGroup());
                         Log.i(tag,"电话："+user.getMobilePhoneNumber());
                         Log.i(tag,"qq："+user.getQq());
+                        Log.i(tag,"问题："+user.getQues());
 
                     }else{
                         lt.error();

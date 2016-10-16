@@ -10,6 +10,15 @@ public class MyUser extends BmobUser {
     private String group;
     private String sex;
     private String qq;
+    private String ques;
+
+    public String getQues() {
+        return ques;
+    }
+
+    public void setQues(String ques) {
+        this.ques = ques;
+    }
 
     public String getName() {
         return name;

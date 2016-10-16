@@ -30,6 +30,7 @@
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
             android:hint="邮箱"
             android:singleLine="true" />
     </android.support.design.widget.TextInputLayout>
@@ -60,6 +61,17 @@
             android:singleLine="true" />
     </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_ques"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="软创在哪"
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:layout_width="match_parent"

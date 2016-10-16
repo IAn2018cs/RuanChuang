@@ -45,7 +45,7 @@ public class PHPActivity extends AppCompatActivity {
         lt.setText("加载数据中...").setTranslationY(100).show();
 
         //读取服务器数据
-        ReadUtlis.queryData("PHP组", lists, new ReadUtlis.CallBack() {
+        ReadUtlis.queryData(this,"PHP组", lists, new ReadUtlis.CallBack() {
             @Override
             public void success() {
                 lt.success();
@@ -64,15 +64,17 @@ public class PHPActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Person p = lists.get(i);
-                BmobIMUserInfo info = new BmobIMUserInfo(p.getId(), p.getGroup()+" "+p.getName(), "");
-                //启动一个会话，实际上就是在本地数据库的会话列表中先创建（如果没有）与该用户的会话信息，且将用户信息存储到本地的用户表中
-                BmobIMConversation c = BmobIM.getInstance().startPrivateConversation(info, null);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("c", c);
-                bundle.putString("title",p.getGroup()+" "+p.getName());
-                Intent intent = new Intent(getApplicationContext(),ChatActivity.class);
-                intent.putExtra("bundle",bundle);
-                startActivity(intent);
+                if(p.getId() != null){
+                    BmobIMUserInfo info = new BmobIMUserInfo(p.getId(), p.getGroup()+" "+p.getName(), "");
+                    //启动一个会话，实际上就是在本地数据库的会话列表中先创建（如果没有）与该用户的会话信息，且将用户信息存储到本地的用户表中
+                    BmobIMConversation c = BmobIM.getInstance().startPrivateConversation(info, null);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("c", c);
+                    bundle.putString("title",p.getGroup()+" "+p.getName());
+                    Intent intent = new Intent(getApplicationContext(),ChatActivity.class);
+                    intent.putExtra("bundle",bundle);
+                    startActivity(intent);
+                }
             }
         });
         lv_php.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {

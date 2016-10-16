@@ -51,6 +51,7 @@ import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.DownloadFileListener;
 import cn.bmob.v3.listener.FindListener;
+import cn.jpush.android.api.JPushInterface;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
     private DrawerLayout drawerLayout;
@@ -85,6 +86,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // 6.0请求权限
+        JPushInterface.requestPermission(this);
 
         //初始化数据
         initDate();

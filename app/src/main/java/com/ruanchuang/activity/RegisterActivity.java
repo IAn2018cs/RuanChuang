@@ -17,7 +17,7 @@ import cn.bmob.v3.listener.SaveListener;
  * Created by joho on 2016/5/27.
  */
 public class RegisterActivity extends AppCompatActivity {
-    private EditText et_username,et_pwd,et_pwd2,et_name,et_group,et_sex,et_phone,et_qq,et_email;
+    private EditText et_username,et_pwd,et_pwd2,et_ques,et_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
         et_pwd = (EditText) findViewById(R.id.et_pwd);
         et_pwd2 = (EditText) findViewById(R.id.et_pwd2);
         et_email = (EditText) findViewById(R.id.et_email);
+        et_ques = (EditText) findViewById(R.id.et_ques);
     }
 
     public void click (View view){
@@ -39,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
         final String pwd = et_pwd.getText().toString().trim();
         String pwd2 = et_pwd2.getText().toString().trim();
         String email = et_email.getText().toString().trim();
+        String ques = et_ques.getText().toString().trim();
 
         if(!userName.equals("") && !pwd.equals("") && !pwd2.equals("") && !email.equals("")){
             if(pwd.equals(pwd2)){
@@ -47,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
                 myUser.setPassword(pwd);
                 myUser.setName("User");
                 myUser.setEmail(email);
+                myUser.setQues(ques);
                 myUser.signUp(new SaveListener<MyUser>() {
                     @Override
                     public void done(MyUser myUser, BmobException e) {

@@ -42,6 +42,8 @@ public class InfoUser extends AppCompatActivity implements View.OnClickListener 
     private String[] mSexDes;
     private int mGroupIndex1;
     private int mSexIndex;
+    private TextView tv_quse;
+    private String mQues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class InfoUser extends AppCompatActivity implements View.OnClickListener 
         mGroup = sp.getString("group", "");
         mQq = sp.getString("qq", "");
         mPhone = sp.getString("phone", "");
+        mQues = sp.getString("ques", "");
 
         mGroupDes = new String[]{"行政", "PHP组", "视频组", "Android组", "Java组",".NET组","美工组"};
         mSexDes = new String[]{"男", "女"};
@@ -84,12 +87,14 @@ public class InfoUser extends AppCompatActivity implements View.OnClickListener 
         mGroup = sp.getString("group", "");
         mQq = sp.getString("qq", "");
         mPhone = sp.getString("phone", "");
+        mQues = sp.getString("ques", "");
 
         tv_name.setText("姓名：" + mName);
         tv_sex.setText("性别：" + mSex);
         tv_group.setText("组别：" + mGroup);
         tv_phone.setText("电话：" + mPhone);
         tv_qq.setText("QQ：" + mQq);
+        tv_quse.setText("软创在哪：" + mQues);
     }
 
     private void initDialog() {
@@ -196,12 +201,14 @@ public class InfoUser extends AppCompatActivity implements View.OnClickListener 
         Button bt_group = (Button) findViewById(R.id.bt_group);
         Button bt_phone = (Button) findViewById(R.id.bt_phone);
         Button bt_qq = (Button) findViewById(R.id.bt_qq);
+        Button bt_quse = (Button) findViewById(R.id.bt_quse);
 
         bt_name.setOnClickListener(this);
         bt_sex.setOnClickListener(this);
         bt_group.setOnClickListener(this);
         bt_phone.setOnClickListener(this);
         bt_qq.setOnClickListener(this);
+        bt_quse.setOnClickListener(this);
     }
 
     private void initUI() {
@@ -210,12 +217,14 @@ public class InfoUser extends AppCompatActivity implements View.OnClickListener 
         tv_group = (TextView) findViewById(R.id.tv_group);
         tv_phone = (TextView) findViewById(R.id.tv_phone);
         tv_qq = (TextView) findViewById(R.id.tv_qq);
+        tv_quse = (TextView) findViewById(R.id.tv_quse);
 
         tv_name.setText("姓名：" + mName);
         tv_sex.setText("性别：" + mSex);
         tv_group.setText("组别：" + mGroup);
         tv_phone.setText("电话：" + mPhone);
         tv_qq.setText("QQ：" + mQq);
+        tv_quse.setText("软创在哪：" + mQues);
     }
 
     @Override
@@ -343,6 +352,49 @@ public class InfoUser extends AppCompatActivity implements View.OnClickListener 
                                         tv_qq.setText("QQ：" + content);
                                     } else {
                                         Toast.makeText(getApplicationContext(), "更新用户信息失败", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                            // 隐藏对话框
+                            dialog.dismiss();
+                            tv_in.setText("");
+                        } else {
+                            Toast.makeText(getApplicationContext(), "输入的内容不能为空", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                bt_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        tv_in.setText("");
+                    }
+                });
+                dialog.show();
+                break;
+            case R.id.bt_quse:
+                tv_title.setText("修改问题答案");
+                tv_in.setHint("软创在哪里");
+                bt_submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final String content = tv_in.getText().toString().trim();
+                        // 如果内容不为空
+                        if (!TextUtils.isEmpty(content)) {
+                            MyUser newUser = new MyUser();
+                            newUser.setQues(content);
+                            BmobUser bmobUser = BmobUser.getCurrentUser(MyUser.class);
+                            newUser.update(bmobUser.getObjectId(), new UpdateListener() {
+                                @Override
+                                public void done(BmobException e) {
+                                    if (e == null) {
+                                        Toast.makeText(getApplicationContext(), "更新问题成功", Toast.LENGTH_SHORT).show();
+                                        SharedPreferences.Editor edit = sp.edit();
+                                        edit.putString("ques", content);
+                                        edit.commit();
+                                        tv_quse.setText("软创在哪里：" + content);
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "更新问题失败", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });

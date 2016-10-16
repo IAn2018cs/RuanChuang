@@ -44,7 +44,7 @@ public class LeaveActivity extends AppCompatActivity {
         lt.setText("加载数据中...").setTranslationY(100).show();
 
         //读取服务器数据
-        ReadUtlis.queryData("行政", lists, new ReadUtlis.CallBack() {
+        ReadUtlis.queryData(this,"行政", lists, new ReadUtlis.CallBack() {
             @Override
             public void success() {
                 lt.success();
